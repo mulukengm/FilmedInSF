@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544465D1203937F60044424B /* SFFilmLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544465D0203937F60044424B /* SFFilmLocation.swift */; };
+		544465D4203947710044424B /* SFFilmLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544465D2203947710044424B /* SFFilmLocationCell.swift */; };
+		544465D5203947710044424B /* SFFilmLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544465D3203947710044424B /* SFFilmLocationCell.xib */; };
+		544465D7203955070044424B /* SFFilmLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544465D6203955070044424B /* SFFilmLocationDetailViewController.swift */; };
+		544465D9203957CF0044424B /* SFPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544465D8203957CF0044424B /* SFPageViewController.swift */; };
+		544B3F43203BCA1D00AF8EC8 /* SFDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544B3F42203BCA1D00AF8EC8 /* SFDataController.swift */; };
 		544CEB1020393119005A6E2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB0F20393119005A6E2D /* AppDelegate.swift */; };
-		544CEB1220393119005A6E2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB1120393119005A6E2D /* ViewController.swift */; };
+		544CEB1220393119005A6E2D /* SFFilmLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB1120393119005A6E2D /* SFFilmLocationsViewController.swift */; };
 		544CEB1520393119005A6E2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544CEB1320393119005A6E2D /* Main.storyboard */; };
 		544CEB1820393119005A6E2D /* FilmedInSF.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB1620393119005A6E2D /* FilmedInSF.xcdatamodeld */; };
 		544CEB1A20393119005A6E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 544CEB1920393119005A6E2D /* Assets.xcassets */; };
 		544CEB1D20393119005A6E2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544CEB1B20393119005A6E2D /* LaunchScreen.storyboard */; };
 		544CEB2820393119005A6E2D /* FilmedInSFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB2720393119005A6E2D /* FilmedInSFTests.swift */; };
 		544CEB3320393119005A6E2D /* FilmedInSFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB3220393119005A6E2D /* FilmedInSFUITests.swift */; };
+		544CEB472039321E005A6E2D /* SFAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CEB462039321E005A6E2D /* SFAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		544465D0203937F60044424B /* SFFilmLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFilmLocation.swift; sourceTree = "<group>"; };
+		544465D2203947710044424B /* SFFilmLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFilmLocationCell.swift; sourceTree = "<group>"; };
+		544465D3203947710044424B /* SFFilmLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SFFilmLocationCell.xib; sourceTree = "<group>"; };
+		544465D6203955070044424B /* SFFilmLocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFilmLocationDetailViewController.swift; sourceTree = "<group>"; };
+		544465D8203957CF0044424B /* SFPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFPageViewController.swift; sourceTree = "<group>"; };
+		544B3F42203BCA1D00AF8EC8 /* SFDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFDataController.swift; sourceTree = "<group>"; };
 		544CEB0C20393119005A6E2D /* FilmedInSF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmedInSF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		544CEB0F20393119005A6E2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		544CEB1120393119005A6E2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		544CEB1120393119005A6E2D /* SFFilmLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFilmLocationsViewController.swift; sourceTree = "<group>"; };
 		544CEB1420393119005A6E2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		544CEB1720393119005A6E2D /* FilmedInSF.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FilmedInSF.xcdatamodel; sourceTree = "<group>"; };
 		544CEB1920393119005A6E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +62,7 @@
 		544CEB2E20393119005A6E2D /* FilmedInSFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmedInSFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		544CEB3220393119005A6E2D /* FilmedInSFUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmedInSFUITests.swift; sourceTree = "<group>"; };
 		544CEB3420393119005A6E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		544CEB462039321E005A6E2D /* SFAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		544B3F41203BC9D100AF8EC8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				544B3F42203BCA1D00AF8EC8 /* SFDataController.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		544CEB0320393118005A6E2D = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +121,12 @@
 		544CEB0E20393119005A6E2D /* FilmedInSF */ = {
 			isa = PBXGroup;
 			children = (
+				544B3F41203BC9D100AF8EC8 /* Data */,
+				544CEB4520393208005A6E2D /* Networking */,
+				544CEB4420393195005A6E2D /* Controller */,
+				544CEB432039318C005A6E2D /* View */,
+				544CEB4020393170005A6E2D /* Model */,
 				544CEB0F20393119005A6E2D /* AppDelegate.swift */,
-				544CEB1120393119005A6E2D /* ViewController.swift */,
 				544CEB1320393119005A6E2D /* Main.storyboard */,
 				544CEB1920393119005A6E2D /* Assets.xcassets */,
 				544CEB1B20393119005A6E2D /* LaunchScreen.storyboard */,
@@ -126,6 +152,41 @@
 				544CEB3420393119005A6E2D /* Info.plist */,
 			);
 			path = FilmedInSFUITests;
+			sourceTree = "<group>";
+		};
+		544CEB4020393170005A6E2D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				544465D0203937F60044424B /* SFFilmLocation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		544CEB432039318C005A6E2D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				544465D2203947710044424B /* SFFilmLocationCell.swift */,
+				544465D3203947710044424B /* SFFilmLocationCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		544CEB4420393195005A6E2D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				544CEB1120393119005A6E2D /* SFFilmLocationsViewController.swift */,
+				544465D6203955070044424B /* SFFilmLocationDetailViewController.swift */,
+				544465D8203957CF0044424B /* SFPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		544CEB4520393208005A6E2D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				544CEB462039321E005A6E2D /* SFAPIClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				544CEB1D20393119005A6E2D /* LaunchScreen.storyboard in Resources */,
+				544465D5203947710044424B /* SFFilmLocationCell.xib in Resources */,
 				544CEB1A20393119005A6E2D /* Assets.xcassets in Resources */,
 				544CEB1520393119005A6E2D /* Main.storyboard in Resources */,
 			);
@@ -262,9 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				544CEB1220393119005A6E2D /* ViewController.swift in Sources */,
+				544CEB1220393119005A6E2D /* SFFilmLocationsViewController.swift in Sources */,
+				544B3F43203BCA1D00AF8EC8 /* SFDataController.swift in Sources */,
+				544465D7203955070044424B /* SFFilmLocationDetailViewController.swift in Sources */,
+				544465D9203957CF0044424B /* SFPageViewController.swift in Sources */,
 				544CEB1820393119005A6E2D /* FilmedInSF.xcdatamodeld in Sources */,
 				544CEB1020393119005A6E2D /* AppDelegate.swift in Sources */,
+				544465D4203947710044424B /* SFFilmLocationCell.swift in Sources */,
+				544CEB472039321E005A6E2D /* SFAPIClient.swift in Sources */,
+				544465D1203937F60044424B /* SFFilmLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
