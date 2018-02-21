@@ -24,6 +24,9 @@ class SFAPIClient: NSObject {
             
             if let error = error {
                 print("DataTask error: " + error.localizedDescription + "\n")
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             } else if let data = data,
                 let response = response as? HTTPURLResponse,
                 response.statusCode == 200 {

@@ -24,30 +24,63 @@ class SFFilmLocationDetailViewController: UIViewController {
     @IBOutlet weak var distributorLabel: UILabel!
     
     var searchResponse: MKLocalSearchResponse?
-    //let sfLatitute:
     let sfRegionCenterCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         displayDetails()
-
-        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(sfRegionCenterCoordinate, 12000 , 12000)
+        mapView.showsUserLocation = true
+        mapView.showsPointsOfInterest = true
+        mapView.isUserInteractionEnabled = true
+        mapView.setRegion(region, animated: true)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     private func displayDetails(){
         if let displayedLocation = self.location {
             self.locationLabel.text = displayedLocation.location
-            self.movieTitleLabel.text = displayedLocation.title
+            self.movieTitleLabel.text = displayedLocation.title?.uppercased()
             self.releaseYearLabel.text = displayedLocation.releaseYear
-            self.directorLabel.text = displayedLocation.director
-            self.writerLabel.text = displayedLocation.writer
-            self.productionCampanyLabel.text = displayedLocation.productionCompany
-            self.distributorLabel.text = displayedLocation.distributor
+
+            let normalAttrs = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor : UIColor.lightGray]
+            let boldAttrs = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16), NSAttributedStringKey.foregroundColor : UIColor.white]
+            
+            if let director = displayedLocation.director {
+                let normalTxt = NSMutableAttributedString(string:director, attributes:normalAttrs)
+                let boldTxt = NSMutableAttributedString(string:"Director  ", attributes:boldAttrs)
+                boldTxt.append(normalTxt)
+                self.directorLabel.attributedText = boldTxt
+            }
+
+            if let writer = displayedLocation.writer {
+                let normalTxt = NSMutableAttributedString(string:writer, attributes:normalAttrs)
+                let boldTxt = NSMutableAttributedString(string:"Writer  ", attributes:boldAttrs)
+                boldTxt.append(normalTxt)
+                self.writerLabel.attributedText = boldTxt
+            }
+            
+            if let productionCompany = displayedLocation.productionCompany {
+                let normalTxt = NSMutableAttributedString(string:productionCompany, attributes:normalAttrs)
+                let boldTxt = NSMutableAttributedString(string:"Production  ", attributes:boldAttrs)
+                boldTxt.append(normalTxt)
+                self.productionCampanyLabel.attributedText = boldTxt
+            }
+
+            if let distributor = displayedLocation.distributor {
+                let normalTxt = NSMutableAttributedString(string:distributor, attributes:normalAttrs)
+                let boldTxt = NSMutableAttributedString(string:"Distributor  ", attributes:boldAttrs)
+                boldTxt.append(normalTxt)
+                self.distributorLabel.attributedText = boldTxt
+            }
             
             if let actors = displayedLocation.actors {
                 self.castLabel.text = actors
@@ -94,25 +127,13 @@ class SFFilmLocationDetailViewController: UIViewController {
 
 extension SFFilmLocationDetailViewController : MKMapViewDelegate {
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(sfRegionCenterCoordinate, 12000 , 12000)
-        mapView.showsUserLocation = true
-        mapView.showsPointsOfInterest = true
-        mapView.isUserInteractionEnabled = true
-        mapView.setRegion(region, animated: true)
+
     }
 
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         if let displayedLocation = self.location {
-            
             let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(self.sfRegionCenterCoordinate, 12000 , 12000)
             self.performSearch(withText: displayedLocation.location!, region: region)
-//            let when = DispatchTime.now() + 4
-//            DispatchQueue.main.asyncAfter(deadline: when, execute: {
-//                let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(self.sfRegionCenterCoordinate, 12000 , 12000)
-//                self.performSearch(withText: displayedLocation.location!, region: region)
-//            })
-//            
-            
         }
     }
     

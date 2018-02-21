@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class SFFilmLocationsViewController: UIViewController {
+    
     let movieDBAPIMovieSearchBase = "https://api.themoviedb.org/3/search/movie"
     let movieDBAPIPosterImageDownloadBase = "http://image.tmdb.org/t/p/w500/"
     let movieDBAPIKey = "463aec85f343a8632b030dbe52d4b382";
@@ -29,13 +30,18 @@ class SFFilmLocationsViewController: UIViewController {
     
     @IBOutlet weak var sortSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.register(SFFilmLocationCell.nib, forCellReuseIdentifier: SFFilmLocationCell.identifier)
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 320;
+        tableView.estimatedRowHeight = 320
+        messageLabel.isHidden = true
         
         do {
             try self.fetchedResultsController.performFetch()
@@ -46,13 +52,14 @@ class SFFilmLocationsViewController: UIViewController {
                 hasLocations = locations.count > 0
             }
             
+            tableView.isHidden = !hasLocations
+            
             if hasLocations {
                 tableView.reloadData()
             }
             else {
                 getFilmLocationsFromAPI()
             }
-            
             
         } catch {
             let fetchError = error as NSError
@@ -67,23 +74,25 @@ class SFFilmLocationsViewController: UIViewController {
     }
 
     // MARK: - IB Action
+
+    
     @IBAction func sortSegmentedControlValueChanged(_ sender: Any) {
         switch sortSegmentControl.selectedSegmentIndex {
         case 0:
-            sortFilmLocations(with: "location")
+            sortFilmLocations(with: "location", ascending: true)
         case 1:
-            sortFilmLocations(with: "title")
+            sortFilmLocations(with: "title", ascending: true)
         case 2:
-            sortFilmLocations(with: "releaseYear")
+            sortFilmLocations(with: "releaseYear", ascending: false)
         default:
-            sortFilmLocations(with: "location")
+            sortFilmLocations(with: "location", ascending: true)
         }
     }
     
     // MARK: - Data
 
-    private func sortFilmLocations(with property: String) {
-        fetchedResultsController.fetchRequest.sortDescriptors = [NSSortDescriptor(key: property, ascending: true)]
+    private func sortFilmLocations(with property: String, ascending: Bool) {
+        fetchedResultsController.fetchRequest.sortDescriptors = [NSSortDescriptor(key: property, ascending: ascending)]
         do {
             try self.fetchedResultsController.performFetch()
             
@@ -105,13 +114,15 @@ class SFFilmLocationsViewController: UIViewController {
     }
     
     private func getFilmLocationsFromAPI() {
+        activityIndicatorView.startAnimating()
         let urlString = sfFilmLocationsAPIBase;
+        
         SFAPIClient.sharedInstance.fetchDataFromPath(path: urlString, cached: true) { (data, error) in
+            self.activityIndicatorView.stopAnimating()
+
             if let data = data {
                 do {
                     let resultsArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]]
-                    print(resultsArray ?? "Can't print result")
-                    
                     DispatchQueue.main.async {
                         self.persistFilmLocations(array: resultsArray!)
                     }
@@ -119,10 +130,14 @@ class SFFilmLocationsViewController: UIViewController {
                 } catch let error as NSError {
                     print(error)
                 }
-                
+            }
+            else if let error = error {
+                print(error)
+                DispatchQueue.main.async {
+                    self.messageLabel.isHidden = false
+                }
             }
         }
-        
     }
     
     private func createFilmLocationEntityFrom(dictionary: [String: AnyObject]) -> NSManagedObject? {
@@ -181,18 +196,17 @@ class SFFilmLocationsViewController: UIViewController {
     }
     
     // MARK :- View helpers
+    
     private func updateView() {
-//        var hasLocations = false
-//
-//        if let locations = fetchedResultsController.fetchedObjects {
-//            hasLocations = locations.count > 0
-//        }
+        var hasLocations = false
+
+        if let locations = fetchedResultsController.fetchedObjects {
+            hasLocations = locations.count > 0
+        }
         
-        //tableView.isHidden = !hasLocations
+        tableView.isHidden = !hasLocations
         tableView.reloadData()
-//        messageLabel.isHidden = hasQuotes
-        
-//        activityIndicatorView.stopAnimating()
+        messageLabel.isHidden = hasLocations
     }
 }
 
@@ -221,7 +235,7 @@ extension SFFilmLocationsViewController: UITableViewDataSource {
         let location = fetchedResultsController.object(at: indexPath) as! SFFilmLocation
         let cell = tableView.dequeueReusableCell(withIdentifier: SFFilmLocationCell.identifier, for: indexPath) as! SFFilmLocationCell
         cell.locationLabel.text = location.location
-        cell.movieTitleLabel.text = location.title
+        cell.movieTitleLabel.text = location.title?.uppercased()
         cell.releaseYearLabel.text = location.releaseYear
         
         return cell
