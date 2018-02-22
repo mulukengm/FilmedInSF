@@ -42,7 +42,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-9c-3mU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpS-9c-3mU">
                                 <rect key="frame" x="0.0" y="47" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -84,10 +84,8 @@
                                     <constraint firstItem="HGM-hL-3Zw" firstAttribute="top" secondItem="fga-JA-WLB" secondAttribute="top" id="YWR-eb-TZO"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-Nq-smj" userLabel="messageLabel">
-                                <rect key="frame" x="30" y="281" width="315" height="41"/>
-                                <string key="text">Unable to fetch data.
-Please check your internet connection.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-Nq-smj" userLabel="messageLabel">
+                                <rect key="frame" x="30" y="302" width="315" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -142,7 +140,7 @@ Please check your internet connection.</string>
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynx-3z-JBQ" userLabel="Container View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="377"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
                                         <subviews>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8Dz-ym-JxP">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
@@ -163,7 +161,7 @@ Please check your internet connection.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Rz-4j-mbL" userLabel="Movie Info Container View">
-                                                <rect key="frame" x="0.0" y="323" width="375" height="54"/>
+                                                <rect key="frame" x="0.0" y="323" width="375" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hI7-7A-Ldq" userLabel="Release Year Label">
                                                         <rect key="frame" x="8" y="46" width="359" height="0.0"/>
@@ -190,24 +188,24 @@ Please check your internet connection.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY9-Im-gXp" userLabel="Writer Label">
-                                                        <rect key="frame" x="8" y="54" width="359" height="0.0"/>
+                                                        <rect key="frame" x="8" y="58" width="359" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewH-UB-3Qj" userLabel="Production Company Label">
-                                                        <rect key="frame" x="8" y="54" width="359" height="0.0"/>
+                                                        <rect key="frame" x="8" y="62" width="359" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3n-NM-car" userLabel="Distributor Label">
-                                                        <rect key="frame" x="8" y="54" width="359" height="0.0"/>
+                                                        <rect key="frame" x="8" y="66" width="359" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j69-k0-uy1" userLabel="Movie Title Label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j69-k0-uy1" userLabel="Movie Title Label">
                                                         <rect key="frame" x="8" y="0.0" width="359" height="46"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="46" id="DwG-Fp-Eot"/>
@@ -222,7 +220,7 @@ Please check your internet connection.</string>
                                                     <constraint firstItem="h27-lr-4DV" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="8" id="0GR-bP-X9z"/>
                                                     <constraint firstItem="h27-lr-4DV" firstAttribute="trailing" secondItem="9Rz-4j-mbL" secondAttribute="trailing" constant="-8" id="4T0-vC-XBy"/>
                                                     <constraint firstItem="w3n-NM-car" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="8" id="5e6-Ie-blj"/>
-                                                    <constraint firstItem="ewH-UB-3Qj" firstAttribute="top" secondItem="lY9-Im-gXp" secondAttribute="bottom" id="CAL-fd-OA9"/>
+                                                    <constraint firstItem="ewH-UB-3Qj" firstAttribute="top" secondItem="lY9-Im-gXp" secondAttribute="bottom" constant="4" id="CAL-fd-OA9"/>
                                                     <constraint firstItem="Tld-tU-VNA" firstAttribute="top" secondItem="vds-Qz-p6e" secondAttribute="bottom" id="F19-XN-Ujd"/>
                                                     <constraint firstItem="ewH-UB-3Qj" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="8" id="FKU-Mj-sHj"/>
                                                     <constraint firstItem="vds-Qz-p6e" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="14" id="Grn-RW-lcz"/>
@@ -236,8 +234,8 @@ Please check your internet connection.</string>
                                                     <constraint firstItem="j69-k0-uy1" firstAttribute="top" secondItem="9Rz-4j-mbL" secondAttribute="top" id="fLz-mE-OCq"/>
                                                     <constraint firstItem="lY9-Im-gXp" firstAttribute="trailing" secondItem="9Rz-4j-mbL" secondAttribute="trailing" constant="-8" id="jU1-et-krb"/>
                                                     <constraint firstItem="j69-k0-uy1" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="8" id="mgD-xV-gKR"/>
-                                                    <constraint firstItem="lY9-Im-gXp" firstAttribute="top" secondItem="Tld-tU-VNA" secondAttribute="bottom" id="q0C-bY-XLc"/>
-                                                    <constraint firstItem="w3n-NM-car" firstAttribute="top" secondItem="ewH-UB-3Qj" secondAttribute="bottom" id="sar-fu-xuc"/>
+                                                    <constraint firstItem="lY9-Im-gXp" firstAttribute="top" secondItem="Tld-tU-VNA" secondAttribute="bottom" constant="4" id="q0C-bY-XLc"/>
+                                                    <constraint firstItem="w3n-NM-car" firstAttribute="top" secondItem="ewH-UB-3Qj" secondAttribute="bottom" constant="4" id="sar-fu-xuc"/>
                                                     <constraint firstItem="lY9-Im-gXp" firstAttribute="leading" secondItem="9Rz-4j-mbL" secondAttribute="leading" constant="8" id="tyI-A6-Ix6"/>
                                                     <constraint firstItem="vds-Qz-p6e" firstAttribute="trailing" secondItem="9Rz-4j-mbL" secondAttribute="trailing" constant="-8" id="vCU-uY-7Vu"/>
                                                     <constraint firstItem="vds-Qz-p6e" firstAttribute="top" secondItem="h27-lr-4DV" secondAttribute="bottom" id="vSn-EA-JLN"/>

@@ -19,19 +19,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="410" height="68.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TERMINATOR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMg-ez-C0A" userLabel="movieTitleLbl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="TERMINATOR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMg-ez-C0A" userLabel="Movie Title Label">
                         <rect key="frame" x="20" y="11" width="370" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiY-me-Oc6" userLabel="locationLbl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiY-me-Oc6" userLabel="Location Label">
                         <rect key="frame" x="20" y="39" width="280" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.91226357219999998" green="0.74238404530000002" blue="0.21103048739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ao-hE-IDc" userLabel="releaseYearLbl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ao-hE-IDc" userLabel="Release Year Label">
                         <rect key="frame" x="313" y="39" width="77" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="77" id="iPq-rN-bdg"/>
@@ -40,6 +40,13 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w20-EQ-h4m" userLabel="Seaprator">
+                        <rect key="frame" x="0.0" y="66.5" width="410" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="6mH-xo-z7L"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -49,8 +56,12 @@
                     <constraint firstItem="aiY-me-Oc6" firstAttribute="trailing" secondItem="6Ao-hE-IDc" secondAttribute="leading" constant="-13" id="Jff-sb-Udk"/>
                     <constraint firstItem="6Ao-hE-IDc" firstAttribute="top" secondItem="EMg-ez-C0A" secondAttribute="bottom" constant="8" id="M4n-vv-inq"/>
                     <constraint firstItem="EMg-ez-C0A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="N8e-WK-sVs"/>
+                    <constraint firstItem="w20-EQ-h4m" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="OXF-dB-OvK"/>
                     <constraint firstAttribute="bottom" secondItem="aiY-me-Oc6" secondAttribute="bottom" constant="11.5" id="REu-v4-PF5"/>
+                    <constraint firstAttribute="trailing" secondItem="w20-EQ-h4m" secondAttribute="trailing" id="fep-OW-loK"/>
+                    <constraint firstAttribute="bottom" secondItem="w20-EQ-h4m" secondAttribute="bottom" constant="1" id="l9W-OB-wbt"/>
                     <constraint firstItem="EMg-ez-C0A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="lND-BP-Nca"/>
+                    <constraint firstItem="w20-EQ-h4m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ndo-ne-pcU"/>
                     <constraint firstAttribute="trailing" secondItem="6Ao-hE-IDc" secondAttribute="trailing" constant="20" id="t85-6M-Iov"/>
                 </constraints>
             </tableViewCellContentView>

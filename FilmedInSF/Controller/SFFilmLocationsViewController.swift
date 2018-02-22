@@ -11,15 +11,16 @@ import CoreData
 
 class SFFilmLocationsViewController: UIViewController {
     
-    let movieDBAPIMovieSearchBase = "https://api.themoviedb.org/3/search/movie"
-    let movieDBAPIPosterImageDownloadBase = "http://image.tmdb.org/t/p/w500/"
-    let movieDBAPIKey = "463aec85f343a8632b030dbe52d4b382";
+    @IBOutlet weak var sortSegmentControl: UISegmentedControl!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var messageLabel: UILabel!
+    let refreshControl = UIRefreshControl()
+    
     let sfFilmLocationsAPIBase = "https://data.sfgov.org/resource/wwmu-gmzc.json"
-
-    var locations : [SFFilmLocation] = [SFFilmLocation]()
-
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SFFilmLocation")
-
+    var locations : [SFFilmLocation] = [SFFilmLocation]()
+    
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "location", ascending: true)]
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -28,20 +29,14 @@ class SFFilmLocationsViewController: UIViewController {
         
     }()
     
-    @IBOutlet weak var sortSegmentControl: UISegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var messageLabel: UILabel!
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.register(SFFilmLocationCell.nib, forCellReuseIdentifier: SFFilmLocationCell.identifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 320
-        messageLabel.isHidden = true
+        
+        prepareTable()
+        prepareMessageLabel()
+        addRefreshControl()
         
         do {
             try self.fetchedResultsController.performFetch()
@@ -51,8 +46,6 @@ class SFFilmLocationsViewController: UIViewController {
             if let locations = fetchedResultsController.fetchedObjects {
                 hasLocations = locations.count > 0
             }
-            
-            tableView.isHidden = !hasLocations
             
             if hasLocations {
                 tableView.reloadData()
@@ -74,7 +67,6 @@ class SFFilmLocationsViewController: UIViewController {
     }
 
     // MARK: - IB Action
-
     
     @IBAction func sortSegmentedControlValueChanged(_ sender: Any) {
         switch sortSegmentControl.selectedSegmentIndex {
@@ -114,11 +106,13 @@ class SFFilmLocationsViewController: UIViewController {
     }
     
     private func getFilmLocationsFromAPI() {
+        self.messageLabel.isHidden = true
         activityIndicatorView.startAnimating()
         let urlString = sfFilmLocationsAPIBase;
         
         SFAPIClient.sharedInstance.fetchDataFromPath(path: urlString, cached: true) { (data, error) in
             self.activityIndicatorView.stopAnimating()
+            self.refreshControl.endRefreshing()
 
             if let data = data {
                 do {
@@ -195,7 +189,7 @@ class SFFilmLocationsViewController: UIViewController {
         }
     }
     
-    // MARK :- View helpers
+    // MARK :- View Helpers
     
     private func updateView() {
         var hasLocations = false
@@ -204,9 +198,75 @@ class SFFilmLocationsViewController: UIViewController {
             hasLocations = locations.count > 0
         }
         
-        tableView.isHidden = !hasLocations
         tableView.reloadData()
         messageLabel.isHidden = hasLocations
+    }
+    
+    private func prepareTable() {
+        tableView.register(SFFilmLocationCell.nib, forCellReuseIdentifier: SFFilmLocationCell.identifier)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 320
+    }
+
+    private func prepareMessageLabel() {
+        let normalAttrs = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor : UIColor.lightGray]
+        let boldAttrs = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16), NSAttributedStringKey.foregroundColor : UIColor.white]
+        let message =
+        """
+        Sorry! Unable to fetch data.
+        Please check your internet connection.
+
+
+        """
+        
+        let normalTxt = NSMutableAttributedString(string:message, attributes:normalAttrs)
+        let boldTxt = NSMutableAttributedString(string:"Pull down to refresh.", attributes:boldAttrs)
+        normalTxt.append(boldTxt)
+    
+        self.messageLabel.attributedText = normalTxt
+        messageLabel.isHidden = true
+    }
+    
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSMutableAttributedString(string:"Pull to refetch data", attributes:[NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor : UIColor.lightGray])
+        refreshControl.addTarget(self, action: #selector(SFFilmLocationsViewController.refetchData), for: UIControlEvents.valueChanged)
+    
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = refreshControl
+        }
+        else {
+            tableView.addSubview(refreshControl)
+        }
+    }
+    
+    @objc func refetchData(){
+        clearSavedLocations()
+        getFilmLocationsFromAPI()
+    }
+    
+    private func clearSavedLocations(){
+        let locatoinsFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SFFilmLocation")
+        let locationsDeleteRequest = NSBatchDeleteRequest(fetchRequest: locatoinsFetchRequest)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.dataController.persistentContainer.viewContext
+        
+        do {
+            try appDelegate.dataController.persistentContainer.persistentStoreCoordinator.execute(locationsDeleteRequest, with: context)
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    let saveError = error as NSError
+                    print("Unable to save managed context")
+                    print("\(saveError), \(saveError.localizedDescription)")
+                }
+            }
+        }
+        catch {
+            let deleteError = error as NSError
+            print("Unable to delete Core Data objects")
+            print("\(deleteError), \(deleteError.localizedDescription)")
+        }
     }
 }
 

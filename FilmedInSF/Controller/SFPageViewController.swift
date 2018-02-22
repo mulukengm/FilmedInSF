@@ -14,6 +14,8 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     var locationIndex: Int?
     var date: Date?
     
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,8 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Logic
+
     func addBackButton(){
         let backButton = UIButton.init(type: .custom)
         backButton.frame = CGRect(x: 0, y: 18, width: 56, height: 56)
@@ -52,6 +56,7 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
 }
 
 extension SFPageViewController: UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let filmLocationDetailViewController = viewController as! SFFilmLocationDetailViewController
         
@@ -103,6 +108,4 @@ extension SFPageViewController: UIPageViewControllerDataSource {
         
         return controller
     }
-    
-    
 }

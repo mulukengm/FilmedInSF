@@ -26,6 +26,8 @@ class SFFilmLocationDetailViewController: UIViewController {
     var searchResponse: MKLocalSearchResponse?
     let sfRegionCenterCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
     
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         displayDetails()
@@ -45,6 +47,8 @@ class SFFilmLocationDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Logic
+
     private func displayDetails(){
         if let displayedLocation = self.location {
             self.locationLabel.text = displayedLocation.location
@@ -113,16 +117,6 @@ class SFFilmLocationDetailViewController: UIViewController {
         })
     }
     
-    func removeAllPinsButUserLocation() {
-        let pins : [MKAnnotation] = mapView.annotations
-        mapView.removeAnnotations(pins)
-    }
-    
-    func annotation(with location: CLLocation) -> MKPointAnnotation {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location.coordinate
-        return annotation
-    }
 }
 
 extension SFFilmLocationDetailViewController : MKMapViewDelegate {
@@ -136,9 +130,4 @@ extension SFFilmLocationDetailViewController : MKMapViewDelegate {
             self.performSearch(withText: displayedLocation.location!, region: region)
         }
     }
-    
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//
-//    }
-
 }
