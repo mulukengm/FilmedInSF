@@ -12,7 +12,6 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     
     var locations = [SFFilmLocation]()
     var locationIndex: Int?
-    var date: Date?
     
     // MARK: - View Life Cycle
 
@@ -20,7 +19,6 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
         super.viewDidLoad()
         
         dataSource = self
-        addBackButton()
         
         if let currentLocationIndex = locationIndex {
             if locations.indices.contains(currentLocationIndex) {
@@ -39,20 +37,7 @@ class SFPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    // MARK: - Logic
 
-    func addBackButton(){
-        let backButton = UIButton.init(type: .custom)
-        backButton.frame = CGRect(x: 0, y: 18, width: 56, height: 56)
-        backButton.setImage(UIImage.init(named: "circleBackButton"), for: .normal)
-        backButton.addTarget(self, action:#selector(backAction(sender:)), for: .touchUpInside)
-        self.view.addSubview(backButton)
-    }
-    
-    @objc func backAction(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
 extension SFPageViewController: UIPageViewControllerDataSource {

@@ -11,6 +11,7 @@ import CoreData
 
 class SFDataController: NSObject {
     var persistentContainer: NSPersistentContainer
+    
     init(completionClosure: @escaping () -> ()) {
         persistentContainer = NSPersistentContainer(name: "FilmedInSF")
         persistentContainer.loadPersistentStores() { (description, error) in
